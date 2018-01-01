@@ -2,6 +2,7 @@ C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\mai
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\app.module.js
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\app.routing.js
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\main.js
+C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\bb\bb.component.js
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\gp\gp.component.js
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\gpserv\gpserv.service.js
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\main\main.component.js
@@ -75,10 +76,12 @@ C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\mai
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-angular\router\private-imports\router-url-tree.js
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-angular\value-accessors\base-value-accessor.js
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-angular\zone-js\dist\zone-nativescript.js
+C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-clipboard\clipboard.js
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-intl\index.js
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-intl\nativescript-intl-common.js
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-intl\nativescript-intl.js
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-localstorage\localstorage.js
+C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\tns_modules\nativescript-toasts\index.js
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\tns_modules\tns-core-modules\bundle-entry-points.js
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\tns_modules\tns-core-modules\application\application-common.js
 C:\Users\sdgu0\Dropbox\fun stuff\android\mobile-gp\platforms\android\app\src\main\assets\app\tns_modules\tns-core-modules\application\application.js

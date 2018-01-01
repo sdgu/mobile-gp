@@ -5,7 +5,12 @@
 
 </ActionBar>
 
+<StackLayout>
+
+	<Button text="copy" (tap)="copyToClipboard()"></Button>
 <WrapLayout>
 	<TextView [(ngModel)]="bbStr"></TextView>
 
 </WrapLayout>
+</StackLayout>
+

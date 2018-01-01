@@ -4,12 +4,20 @@
         "directory": "..\\..\\node_modules\\nativescript-angular"
     },
     {
+        "name": "nativescript-clipboard",
+        "directory": "..\\..\\node_modules\\nativescript-clipboard"
+    },
+    {
         "name": "nativescript-localstorage",
         "directory": "..\\..\\node_modules\\nativescript-localstorage"
     },
     {
         "name": "nativescript-theme-core",
         "directory": "..\\..\\node_modules\\nativescript-theme-core"
+    },
+    {
+        "name": "nativescript-toasts",
+        "directory": "..\\..\\node_modules\\nativescript-toasts"
     },
     {
         "name": "tns-core-modules",

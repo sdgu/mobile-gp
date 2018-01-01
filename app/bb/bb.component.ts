@@ -15,6 +15,9 @@ import {
     remove,
     clear
 } from "application-settings";
+var clipboard = require("nativescript-clipboard");
+
+import * as Toast from 'nativescript-toasts';
 
 @Component({
   selector: "bb",
@@ -32,6 +35,7 @@ export class BbComponent
   tapped: Array<string> = [];
 
   bbStr: string = "";
+
 
 
   arrToBB(d: Array<string>, t: Array<string>)
@@ -110,8 +114,8 @@ export class BbComponent
         }
         for (let i = 0; i < rems.length; i+=2)
         {
-          bbArr[rems[i]] = "[s][b][color='red']" + bbArr[rems[i]];
-          bbArr[rems[i+1]] = bbArr[rems[i+1]] + "[/color][/b][/s]"
+          bbArr[rems[i]] = "[b][color='red'][s]" + bbArr[rems[i]];
+          bbArr[rems[i+1]] = bbArr[rems[i+1]] + "[/s][/color][/b]"
         }
         for (let i = 0; i < coms.length; i+=2)
         {
@@ -133,4 +137,15 @@ export class BbComponent
   {
     this.routerExtensions.back();
   }
+
+  copyToClipboard()
+  {
+      clipboard.setText(this.bbStr).then(function() {
+        console.log("OK, copied to the clipboard");
+      })
+      let toastOptions:Toast.ToastOptions = {text: "copied!", duration: Toast.DURATION.SHORT};
+      Toast.show(toastOptions);
+  }
+
+
 }
