@@ -54,10 +54,15 @@ export class BbComponent
         let adds = [];
         let rems = [];
         let coms = [];
-        let start = -1;
+        let start = 0;
         let end = -1;
         let prev = this.tapped[0];
 
+        if (prev === "add")
+        {
+          adds.push(start);
+        }
+        // still an issue here 1/1/2018 12:26 am
         for (let i = 1; i < this.dispArr.length; i++)
         {
           if (prev !== "add" && this.tapped[i] === "add")
@@ -74,8 +79,15 @@ export class BbComponent
           prev = this.tapped[i];
         }
         console.log(adds);
+        prev = this.tapped[0];
+        start = 0;
+        if (prev === "remove")
+        {
+          rems.push(start);
+        }
         for (let i = 1; i < this.dispArr.length; i++)
         {
+
           if (prev !== "remove" && this.tapped[i] === "remove")
           {
             start = i;
@@ -90,6 +102,12 @@ export class BbComponent
           prev = this.tapped[i];
         }
         console.log(rems);
+        prev = this.tapped[0];
+        start = 0;
+        if (prev === "comment")
+        {
+          coms.push(start);
+        }
         for (let i = 1; i < this.dispArr.length; i++)
         {
           if (prev !== "comment" && this.tapped[i] === "comment")

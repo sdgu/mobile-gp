@@ -24,9 +24,13 @@ var BbComponent = (function () {
             var adds = [];
             var rems = [];
             var coms = [];
-            var start = -1;
+            var start = 0;
             var end = -1;
             var prev = _this.tapped[0];
+            if (prev === "add") {
+                adds.push(start);
+            }
+            // still an issue here 1/1/2018 12:26 am
             for (var i = 1; i < _this.dispArr.length; i++) {
                 if (prev !== "add" && _this.tapped[i] === "add") {
                     start = i;
@@ -39,6 +43,11 @@ var BbComponent = (function () {
                 prev = _this.tapped[i];
             }
             console.log(adds);
+            prev = _this.tapped[0];
+            start = 0;
+            if (prev === "remove") {
+                rems.push(start);
+            }
             for (var i = 1; i < _this.dispArr.length; i++) {
                 if (prev !== "remove" && _this.tapped[i] === "remove") {
                     start = i;
@@ -51,6 +60,11 @@ var BbComponent = (function () {
                 prev = _this.tapped[i];
             }
             console.log(rems);
+            prev = _this.tapped[0];
+            start = 0;
+            if (prev === "comment") {
+                coms.push(start);
+            }
             for (var i = 1; i < _this.dispArr.length; i++) {
                 if (prev !== "comment" && _this.tapped[i] === "comment") {
                     start = i;
