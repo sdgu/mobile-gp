@@ -1,5 +1,4 @@
-
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router, NavigationExtras, ActivatedRoute} from "@angular/router";
 import { TextView } from "ui/text-view";
 import { RouterExtensions } from "nativescript-angular/router"
@@ -27,7 +26,7 @@ import {
 
 
 
-export class GpComponent
+export class GpComponent implements OnInit
 {
 	public text: string;
 	public words: Array<string> = [];
@@ -97,7 +96,16 @@ export class GpComponent
 	// 	};
 	// 	return arr;
 	// }
+	showLimit = 200;
+	increaseLimit()
+	{
+		this.showLimit += 200;
+	}
 
+	ngOnInit(): void
+	{
+	// 	this.displayArray = ["test", "hi"]
+	}
 
 	public constructor(private route: ActivatedRoute, private router: Router, private routerExtensions: RouterExtensions, private page: Page)
 	{
@@ -112,23 +120,27 @@ export class GpComponent
 					// this.words.map(x => "<font size='20'>" + x + "</font>");
 					this.tapped = params["tap"].split("$%%");
 					this.displayArray = this.words;//.map(x => " " + x + " ");
+					
 					clear();
 					this.saveArrayToString(this.displayArray);
 					this.saveTapToString(this.tapped);
 					// console.log(getString("displayStr0"));
 					console.log("params new")
-					console.log(this.displayArray);
+
+					// console.log(this.displayArray);
 					
 				}
-				// else
-				// {
-				// 	console.log("params not new")
-				// 	// console.log(getString("displayStr0"));
-				// 	this.displayArray = this.getArrayFromStrings();
-				// 	// console.log(this.displayArray);
-				// }
+		// 		// else
+		// 		// {
+		// 		// 	console.log("params not new")
+		// 		// 	// console.log(getString("displayStr0"));
+		// 		// 	this.displayArray = this.getArrayFromStrings();
+		// 		// 	// console.log(this.displayArray);
+		// 		// }
 				
 			})
+
+
 		// this.route.qPars.subscribe(
 		// 	p =>
 		// 	{
@@ -295,7 +307,7 @@ export class GpComponent
 
 		console.log(s.text);
 		console.log("entered");
-		console.log(this.tapped);
+		// console.log(this.tapped);
 		// this.displayArray.splice(i + 1, 0, "test");
 		// this.tapped.splice(i + 1, 0, "add");
 		this.saveArrayToString(this.displayArray);

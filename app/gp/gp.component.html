@@ -16,7 +16,9 @@
     </ActionItem> -->
 
     <NavigationButton android.systemIcon="ic_menu_back" text="<<" (tap)="goBack()"></NavigationButton>
-
+	<ActionItem>
+    	<Label class="navigationBar" text="show more" (tap)="increaseLimit()"></Label>
+    </ActionItem>
     <ActionItem>
     	<Label class="navigationBar" text="get bb" (tap)="getBB()"></Label>
     </ActionItem>
@@ -24,23 +26,41 @@
 
 <ScrollView>
 <WrapLayout>
-
-	
-
 	<WrapLayout *ngFor="let word of displayArray; let i = index">
 		
-		<!-- <HtmlView [html]="word" (tap)="processWord(i)" (swipe)="processSwipe(i)"></HtmlView> -->
-
-		<Label class="mainText" style.whiteSpace="normal" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)"></Label> 
+		<Label class="mainText" style.whiteSpace="normal" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)" *ngIf="i <= showLimit"></Label> 
 		<TextField id="myAdd" autocorrect="false" autocapitalizationType="none" col="100" *ngIf="selectedWordIndex === i" [text]="inputText" (returnPress)="onReturn(i)" hint="add here"></TextField>
 		<Button text="c" (tap)="insertComment(i)" *ngIf="selectedWordIndex === i"></Button>
-		<!-- <TextField hint="test"></TextField> -->
+
 	</WrapLayout>
-
-<!-- <TextField id="test" hint="test" (returnPress)="onReturn(0)"></TextField> -->
-
 </WrapLayout>
 </ScrollView>
-<!-- <Button text="<<" (tap)="back()"></Button> -->
+
+<!-- <GridLayout class="page" rows="*, *">
+  <GridView row="0" [items]="displayArray" colWidth="30%" rowHeight="100" orientation="vertical">
+    <ng-template let-word="item" let-i="index">
+      <StackLayout margin="10" borderColor="blue" borderWidth="2" borderRadius="5" verticalAlignment="stretch" class="list-group-item">
+        <Label verticalAlignment="center" class="mainText list-group-item-text" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)" textWrap="true"></Label>
+      </StackLayout>
+    </ng-template>
+  </GridView>
+</GridLayout> -->
+
+<!--
+<ListView [items]="displayArray" class="list-group">
+    <ng-template let-word="item" let-i="index" let-odd="odd" let-even="even">
+       		<GridLayout class="list-group-item">
+            <Label class="mainText" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)"></Label>
+            <TextField id="myAdd" autocorrect="false" autocapitalizationType="none" col="100" *ngIf="selectedWordIndex === i" [text]="inputText" (returnPress)="onReturn(i)" hint="add here"></TextField>
+			<Button text="c" (tap)="insertComment(i)" *ngIf="selectedWordIndex === i"></Button>
+        </GridLayout>
+    </ng-template>
+</ListView>
+</WrapLayout> -->
+<!-- </WrapLayout> -->
+
+
+
+<!-- </ScrollView> -->
 <!-- </StackLayout> -->
 

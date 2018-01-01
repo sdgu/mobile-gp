@@ -20,6 +20,7 @@
 		"@angular/router": "~4.4.5",
 		"nativescript-angular": "~4.4.1",
 		"nativescript-clipboard": "^1.1.7",
+		"nativescript-grid-view": "^3.2.2",
 		"nativescript-localstorage": "^1.1.5",
 		"nativescript-theme-core": "~1.0.4",
 		"nativescript-toasts": "^1.0.3",

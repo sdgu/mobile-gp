@@ -145,7 +145,7 @@ export class BbComponent
           
         // }
           
-        this.bbStr = bbArr.join(" ");
+        this.bbStr = bbArr.join(" ").replace(/ ========> /g, "\n");
       }
         
   )}
