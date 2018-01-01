@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Users\\sdgu0\\Dropbox\\fun stuff\\android\\mobile-gp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v11\\notification_media_action.xml",
+        "source": "C:\\Users\\sdgu0\\.android\\build-cache\\f1c208e705c66b4f7ea7ce493da1e985e909f8cc\\output\\res\\layout-v11\\notification_media_action.xml"
+    },
+    {
+        "merged": "C:\\Users\\sdgu0\\Dropbox\\fun stuff\\android\\mobile-gp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v11\\notification_template_big_media_narrow.xml",
+        "source": "C:\\Users\\sdgu0\\.android\\build-cache\\f1c208e705c66b4f7ea7ce493da1e985e909f8cc\\output\\res\\layout-v11\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "C:\\Users\\sdgu0\\Dropbox\\fun stuff\\android\\mobile-gp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v11\\notification_template_big_media_narrow_custom.xml",
+        "source": "C:\\Users\\sdgu0\\.android\\build-cache\\f1c208e705c66b4f7ea7ce493da1e985e909f8cc\\output\\res\\layout-v11\\notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "C:\\Users\\sdgu0\\Dropbox\\fun stuff\\android\\mobile-gp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v11\\notification_template_big_media.xml",
+        "source": "C:\\Users\\sdgu0\\.android\\build-cache\\f1c208e705c66b4f7ea7ce493da1e985e909f8cc\\output\\res\\layout-v11\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "C:\\Users\\sdgu0\\Dropbox\\fun stuff\\android\\mobile-gp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v11\\notification_template_big_media_custom.xml",
+        "source": "C:\\Users\\sdgu0\\.android\\build-cache\\f1c208e705c66b4f7ea7ce493da1e985e909f8cc\\output\\res\\layout-v11\\notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "C:\\Users\\sdgu0\\Dropbox\\fun stuff\\android\\mobile-gp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout-v11\\notification_media_cancel_action.xml",
+        "source": "C:\\Users\\sdgu0\\.android\\build-cache\\f1c208e705c66b4f7ea7ce493da1e985e909f8cc\\output\\res\\layout-v11\\notification_media_cancel_action.xml"
+    }
+]

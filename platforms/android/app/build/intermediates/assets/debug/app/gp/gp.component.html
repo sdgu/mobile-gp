@@ -1,0 +1,17 @@
+<StackLayout>
+<!-- 	<Label text="test1"></Label>
+	<HtmlView><Label text="test"></Label></HtmlView> -->
+<WrapLayout>
+
+	
+
+	<WrapLayout *ngFor="let word of displayArray; let i = index">
+		<!-- <Label [text]="word"></Label>  -->
+		<HtmlView [html]="word" (tap)="processWord(i)"></HtmlView>
+	</WrapLayout>
+
+
+
+</WrapLayout>
+</StackLayout>
+

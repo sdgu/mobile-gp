@@ -1,0 +1,12 @@
+.mainText
+{
+	font-size: 30;
+	
+}
+
+
+WrapLayout
+{
+	margin: 0 10 0 10;
+	/*white-space: normal;*/
+}

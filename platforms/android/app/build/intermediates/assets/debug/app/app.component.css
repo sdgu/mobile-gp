@@ -1,0 +1,27 @@
+StackLayout
+{
+  margin-left: 30;
+  margin-right: 30;
+  /*padding: 15 15 15 15;*/
+  padding-bottom: 15;
+  background-color: white;
+}
+
+Label
+{
+	margin: 10 0 0 0;
+}
+Button, TextView
+{
+  margin: 0 8 10 8;
+  /*margin-left: 16;*/
+  /*margin-right: 16;*/
+  /*margin-bottom: 10;*/
+}
+
+.prepare-button {
+  background-color: #CB1D00;
+  color: white;
+  margin-top: 20;
+}
+
