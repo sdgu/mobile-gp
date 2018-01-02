@@ -4,7 +4,8 @@ import { TextView } from "ui/text-view";
 import { RouterExtensions } from "nativescript-angular/router"
 import { TextField } from "ui/text-field";
 import { Page } from "ui/page";
-
+import { Gp } from "./gp";
+// import { RadListView } from "nativescript-pro-ui/listview";
 import {
     getBoolean,
     setBoolean,
@@ -15,7 +16,7 @@ import {
     hasKey,
     remove,
     clear
-} from "application-settings";
+} from "application-settings"; 
 
 @Component({
   selector: "gp",
@@ -28,6 +29,8 @@ import {
 
 export class GpComponent implements OnInit
 {
+	private test: Array<Gp>;
+
 	public text: string;
 	public words: Array<string> = [];
 	public displayArray: Array<string> = [];
@@ -102,9 +105,10 @@ export class GpComponent implements OnInit
 		this.showLimit += 200;
 	}
 
+	testArr: Array<Gp>;
 	ngOnInit(): void
 	{
-	// 	this.displayArray = ["test", "hi"]
+		// this.testArr = [{"text": "test"}, {"text": "hi"}]
 	}
 
 	public constructor(private route: ActivatedRoute, private router: Router, private routerExtensions: RouterExtensions, private page: Page)

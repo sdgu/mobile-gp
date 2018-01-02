@@ -1,11 +1,11 @@
 .mainText
 {
-	font-size: 30;
+	font-size: 14;
 	
 }
 
 
-WrapLayout
+WrapLayout, GridLayout, StackLayout
 {
 	margin: 0 10 0 10;
 	/*white-space: normal;*/
