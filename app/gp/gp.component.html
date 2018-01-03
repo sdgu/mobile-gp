@@ -29,9 +29,9 @@
 	<WrapLayout *ngFor="let word of displayArray; let i = index">
 		
 	<StackLayout>
-		<Label class="mainText" style.whiteSpace="normal" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)" *ngIf="i <= showLimit"></Label>
+		<Label class="mainText" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)" *ngIf="i <= showLimit"></Label>
 		
-		<TextField id="myAdd" autocorrect="false" autocapitalizationType="none" *ngIf="selectedWordIndex === i" [text]="inputText" (returnPress)="onReturn(i)" hint="add text or comment here"></TextField>
+		<TextField id="myAdd" autocorrect="false" autocapitalizationType="none" *ngIf="selectedWordIndex === i" [text]="inputText" (returnPress)="onReturn(i)" hint="add text text or comment here"></TextField>
 		<Button text="c" (tap)="insertComment(i)" *ngIf="selectedWordIndex === i"></Button>
 	</StackLayout>
 
@@ -39,19 +39,57 @@
 </WrapLayout>
 </ScrollView> -->
 
+
+<!-- @@@@@@@@@@@@@@@ orig 
 <ListView [items]="displayArray" class="list-group">
     <ng-template let-word="item" let-i="index" let-odd="odd" let-even="even">
         <GridLayout class="list-group-item">
-            <Label class="mainText" style.whiteSpace="normal" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)" *ngIf="i <= showLimit"></Label>  
+            <Label class="mainText" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)" *ngIf="i <= showLimit"></Label>  
             <StackLayout>
-            <Label class="mainText" style.whiteSpace="normal" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)"></Label> 
-			<TextField id="myAdd" autocorrect="false" autocapitalizationType="none" col="100" *ngIf="selectedWordIndex === i" [text]="inputText" (returnPress)="onReturn(i)" hint="add here"></TextField>
+            <Label class="mainText" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)"></Label> 
+			<TextField id="myAdd" autocorrect="false" autocapitalizationType="none" col="100" *ngIf="selectedWordIndex === i" [text]="inputText" (returnPress)="onReturn(i)" hint="add text here"></TextField>
 			<Button text="c" (tap)="insertComment(i)" *ngIf="selectedWordIndex === i"></Button>
 			</StackLayout>
         </GridLayout>
     </ng-template>
 </ListView> 
+ -->
 
+ <ListView [items]="testArr" class="list-group">
+    <ng-template let-word="item" let-i="index" let-odd="odd" let-even="even">
+    	<!-- <ListView [items]="word">
+    		<ng-template let-w="item"> -->
+        <!-- <WrapLayout class="list-group-item"> -->
+            
+        	<!-- <GridLayout> -->
+        		<AbsoluteLayout>
+            <StackLayout left=0>
+            <Label class="mainText" [text]="word.one" [color]="getCol(i, 'one')" (tap)="processWord(i, 'one')" (longPress)="processSwipe(i, 'one')"></Label>
+			<TextField id="myAdd" autocorrect="false" autocapitalizationType="none" col="100" *ngIf="showInputs(i, 'one')" [text]="inputText" (returnPress)="onReturn(i, 'one')" hint="add text here"></TextField>
+			<Button text="c" (tap)="insertComment(i, 'one')" *ngIf="showInputs(i, 'one')"></Button>
+			</StackLayout>
+		
+            <StackLayout left=130>
+            <Label class="mainText" [text]="word.two" [color]="getCol(i, 'two')" (tap)="processWord(i, 'two')" (longPress)="processSwipe(i, 'two')"></Label>
+			<TextField id="myAdd" autocorrect="false" autocapitalizationType="none" col="100" *ngIf="showInputs(i, 'two')" [text]="inputText" (returnPress)="onReturn(i, 'two')" hint="add text here"></TextField>
+			<Button text="c" (tap)="insertComment(i, 'two')" *ngIf="showInputs(i, 'two')"></Button>
+			</StackLayout>
+
+            <StackLayout left=260>
+            <Label class="mainText" [text]="word.three" [color]="getCol(i, 'three')" (tap)="processWord(i, 'three')" (longPress)="processSwipe(i, 'three')"></Label>
+			<TextField id="myAdd" autocorrect="false" autocapitalizationType="none" col="100" *ngIf="showInputs(i, 'three')" [text]="inputText" (returnPress)="onReturn(i, 'three')" hint="add text here"></TextField>
+			<Button text="c" (tap)="insertComment(i, 'three')" *ngIf="showInputs(i, 'three')"></Button>
+			</StackLayout>
+
+				</AbsoluteLayout>
+			<!-- </GridLayout> -->
+
+        <!-- </WrapLayout> -->
+
+  <!--   </ng-template>
+    	</ListView> -->
+    </ng-template>
+</ListView> 
 
 <!-- <GridLayout tkExampleTitle tkToggleNavButton>
     <RadListView [items]="_displayArray">
@@ -62,8 +100,8 @@
                 <GridLayout verticalAlignment="bottom">
                     <StackLayout class="labelsStackLayout">
                         <Label [text]="item" [color]="getCol(i)"></Label>
-                        <Label class="mainText" style.whiteSpace="normal" [text]="item.title" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)" *ngIf="i <= showLimit"></Label>
-                        <TextField id="myAdd" autocorrect="false" autocapitalizationType="none" *ngIf="selectedWordIndex === i" [text]="inputText" (returnPress)="onReturn(i)" hint="add text or comment here"></TextField>
+                        <Label class="mainText" [text]="item.title" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)" *ngIf="i <= showLimit"></Label>
+                        <TextField id="myAdd" autocorrect="false" autocapitalizationType="none" *ngIf="selectedWordIndex === i" [text]="inputText" (returnPress)="onReturn(i)" hint="add text text or comment here"></TextField>
                         <Button text="c" (tap)="insertComment(i)" *ngIf="selectedWordIndex === i"></Button>
 
                         
@@ -95,7 +133,7 @@
     <ng-template let-word="item" let-i="index" let-odd="odd" let-even="even">
        		<GridLayout class="list-group-item">
             <Label class="mainText" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)"></Label>
-            <TextField id="myAdd" autocorrect="false" autocapitalizationType="none" col="100" *ngIf="selectedWordIndex === i" [text]="inputText" (returnPress)="onReturn(i)" hint="add here"></TextField>
+            <TextField id="myAdd" autocorrect="false" autocapitalizationType="none" col="100" *ngIf="selectedWordIndex === i" [text]="inputText" (returnPress)="onReturn(i)" hint="add text here"></TextField>
 			<Button text="c" (tap)="insertComment(i)" *ngIf="selectedWordIndex === i"></Button>
         </GridLayout>
     </ng-template>

@@ -50,6 +50,8 @@ export class BbComponent
       {
         this.dispArr = params["dispArr"];
         this.tapped = params["tapArr"];
+        console.log(this.dispArr);
+        console.log(this.tapped);
         let bbArr = this.dispArr;
         let adds = [];
         let rems = [];

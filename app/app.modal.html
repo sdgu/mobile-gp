@@ -1,0 +1,13 @@
+<StackLayout backgroundColor="white">
+    <!-- <ListView [items]="frameworks" class="list-group">
+        <Template let-framework="item">
+            <StackLayout class="list-group-item" (tap)="close(framework)">
+                <Label text="{{ framework }}" class="label"></Label>
+            </StackLayout>
+        </Template>
+    </ListView> -->
+
+    <TextField hint="add text here" autocapitalizationType="none" [(ngModel)]="enteredText"></TextField>
+    <Button text="enter" (tap)="close(enteredText)"></Button>
+    <Button text="c" (tap)="addCommentTags()"></Button>
+</StackLayout>

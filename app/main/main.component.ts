@@ -77,7 +77,7 @@ export class MainComponent implements OnInit
     // if (confirm("Are you ready to start a new check? Previous data will be lost."))
     {
       let t = this.textToPrepare.replace(/\n/g, " ========> ").split(" ").join("$#@")
-      let p = Array(this.textToPrepare.split(" ").length).fill("neutral").join("$%%");
+      let p = Array(t.length).fill("neutral").join("$%%");
       let navigationExtras: NavigationExtras = 
       {
         queryParams:
@@ -98,7 +98,7 @@ export class MainComponent implements OnInit
     };
 
     confirm(options).then((result: boolean) => {
-        console.log(result);
+        // console.log(result);
         if (result)
         {
           this.router.navigate(["gp"], navigationExtras);

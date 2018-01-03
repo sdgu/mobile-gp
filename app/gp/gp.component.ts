@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewContainerRef } from "@angular/core";
 import { Router, NavigationExtras, ActivatedRoute} from "@angular/router";
 import { TextView } from "ui/text-view";
 import { RouterExtensions } from "nativescript-angular/router"
@@ -16,7 +16,11 @@ import {
     hasKey,
     remove,
     clear
-} from "application-settings"; 
+} from "application-settings";
+
+import { TestFile } from "../testFile";
+import { ModalComponent } from "../app.modal";
+import { ModalDialogService } from "nativescript-angular/directives/dialogs";
 
 @Component({
   selector: "gp",
@@ -70,16 +74,16 @@ export class GpComponent implements OnInit
 
 	getBB()
 	{
-	  let dispArr = this.displayArray;
-	  let tapArr = this.tapped;
+	  let da = this.displayArray;
+	  let ta = this.tapped;
       
       let navigationExtras: NavigationExtras = 
       {
         queryParams:
         {
           "new": true,
-          "dispArr": dispArr,
-          "tapArr": tapArr
+          "dispArr": da,
+          "tapArr": ta
         }
 
       };
@@ -111,19 +115,64 @@ export class GpComponent implements OnInit
 		this.showLimit += 200;
 	}
 
-	testArr: Array<Gp>;
+	testArr: Array<TestFile>;
 	ngOnInit(): void
 	{
+
+		// this.testArr = [["hi", "4", "aou"], ["cool", "2", "3"]]
 		// this.testArr = [{"text": "test"}, {"text": "hi"}]
 	}
 
-	public constructor(private route: ActivatedRoute, private router: Router, private routerExtensions: RouterExtensions, private page: Page)
+
+	reshapeArr(arr: Array<string>, n: number, s: string)
+	{
+		let newarr = arr;
+		if (arr.length % n === 1)
+		{
+			newarr.push(s, s);
+		}
+		else if (arr.length % n === 2)
+		{
+			newarr.push(s);
+		}
+		return newarr;
+	}
+
+	reshapeForCol(arr: Array<string>, n: number, s: string)
+	{
+		let outarr = [];
+		let newarr = this.reshapeArr(arr, n, s);
+		for (let i = 0; i < newarr.length; i += 3)
+		{
+
+			outarr.push({"one": newarr[i], "two": newarr[i+1], "three": newarr[i+2]});
+			if (newarr[i] === "Practice")
+			{
+				// console.log(i);
+				// console.dir(outarr);
+			}
+		}
+		if (newarr[0] === "neutral")
+		{
+			// console.dir(outarr);
+		}
+		
+		return [newarr, outarr];
+	}
+
+
+	testTap: Array<TestFile>;
+	public constructor(private route: ActivatedRoute, private modal: ModalDialogService, private vcRef: ViewContainerRef, private router: Router, private routerExtensions: RouterExtensions, private page: Page)
 	{
 		this.route.queryParams.subscribe(
 			params =>
 			{
 				// if (params["new"])
 				{
+					// this.testArr = [{"one": "hi", "two": "4", "three": "aou"}, {"one": "hai", "two": "e4", "three": "aoou"}]
+					
+
+					// this.testArr = [["hi", "4", "aou"], ["cool", "2", "3"]]
 					this.text = params["text"];
 					this.words = this.text.split("$#@");//.replace(/\n/g, "<br>").split("$#@");
 					// this.displayArray = this.words;
@@ -131,6 +180,19 @@ export class GpComponent implements OnInit
 					this.tapped = params["tap"].split("$%%");
 					this.displayArray = this.words;//.map(x => " " + x + " ");
 					
+					let oarr = this.reshapeForCol(this.displayArray, 3, "");
+					this.displayArray = oarr[0]
+					this.testArr = oarr[1];
+
+					let tarr = this.reshapeForCol(this.tapped, 3, "neutral");
+					this.tapped = tarr[0]
+					this.testTap = tarr[1];
+
+					// console.dir(this.testTap[789]);
+					// console.dir(this.testTap.slice(790, 800));
+					// console.log(this.tapped.slice(790*3));
+					// console.log(this.displayArray.slice(790*3))
+					// console.dir(this.testTap[791]);
 					clear(); 
 					this.saveArrayToString(this.displayArray);
 					this.saveTapToString(this.tapped);
@@ -170,21 +232,29 @@ export class GpComponent implements OnInit
   //       "text": ""
   //     }
 
-  //   };
+  //   }; 
   //   this.router.navigate([""], navigationExtras);
   // }
     tapped: Array<string> = [];
-  	getCol(i: number): string
+  	getCol(i: number, n: string): string
   	{
-  		if (this.tapped[i] === "remove")
+  		
+  		if (this.testTap[i] === undefined)
+  		{
+  			// console.log(i);
+  			// console.dir(this.testTap[790]);
+  			// console.dir(this.testArr[790]);
+  		}
+  		// console.dir(this.testTap[i]["one"]);
+  		if (this.testTap[i][n] === "remove")
   		{
   			return "red";
   		}
-  		else if (this.tapped[i] === "add")
+  		else if (this.testTap[i][n] === "add")
   		{
   			return "blue";
   		}
-  		else if (this.tapped[i] === "comment")
+  		else if (this.testTap[i][n] === "comment")
   		{
   			return "green";
   		}
@@ -194,25 +264,46 @@ export class GpComponent implements OnInit
   		}
   		
   	}
-	processWord(i: number): void
+
+  	private numToSpell = {"one": 0, "two": 1, "three": 2};
+
+	processWord(i: number, n: string): void
 	{
-		if (this.tapped[i] === "remove")
+
+		let i2 = i * 3 + this.numToSpell[n];
+
+		if (this.testTap[i][n] === "remove")
 		{
-			this.tapped[i] = "neutral";
+			this.testTap[i][n] = "neutral";
+			this.tapped[i2] = "neutral";
 		}
-		else if (this.tapped[i] === "add")
+		else if (this.testTap[i][n] === "add")
 		{
-			this.displayArray.splice(i, 1);
-			this.tapped.splice(i, 1);
+			this.displayArray.splice(i2, 1);
+			this.tapped.splice(i2, 1);
+			let oarr = this.reshapeForCol(this.displayArray, 3, "");
+			let tarr = this.reshapeForCol(this.tapped, 3, "neutral");
+			this.displayArray = oarr[0];
+			this.tapped = tarr[0];
+			this.testArr = oarr[1];
+			this.testTap = tarr[1];
+					
 		}
-		else if (this.tapped[i] === "comment")
+		else if (this.testTap[i][n] === "comment")
 		{
-			this.displayArray.splice(i, 1);
-			this.tapped.splice(i, 1);
+			this.displayArray.splice(i2, 1);
+			this.tapped.splice(i2, 1);
+			let oarr = this.reshapeForCol(this.displayArray, 3, "");
+			let tarr = this.reshapeForCol(this.tapped, 3, "neutral");
+			this.displayArray = oarr[0];
+			this.tapped = tarr[0];
+			this.testArr = oarr[1];
+			this.testTap = tarr[1];
 		}
 		else
 		{
-			this.tapped[i] = "remove";
+			this.testTap[i][n] = "remove";
+			this.tapped[i2] = "remove";
 		}
 		
 		// alert(i);
@@ -238,12 +329,14 @@ export class GpComponent implements OnInit
 	}
 
 	selectedWordIndex: number = -1;
+	selectedCol: string = "";
 
-	processSwipe(i: number): void
+	processSwipe(i: number, n: string): void
 	{
 		if (this.selectedWordIndex === -1)
 		{
 			this.selectedWordIndex = i;
+			this.selectedCol = n;
 			setTimeout(() =>
 			{
 				this.page.getViewById<TextField>("myAdd").focus()
@@ -252,7 +345,7 @@ export class GpComponent implements OnInit
 		else
 		{
 			this.selectedWordIndex = i;
-			
+			this.selectedCol = n;
 			
 			setTimeout(() =>
 			{
@@ -261,6 +354,20 @@ export class GpComponent implements OnInit
 				s.focus()
 			}, 100)
 		}
+
+        // let options = {
+        //     context: {},
+        //     fullscreen: false,
+        //     viewContainerRef: this.vcRef
+        // };
+        // this.modal.showModal(ModalComponent, options).then(res => {
+        //     console.log(res);
+        //     if (res)
+        //     {
+        //       this.onReturn(i, n, res);
+        //     }
+
+        // });
 
 		
 		// console.log(i);
@@ -279,8 +386,9 @@ export class GpComponent implements OnInit
 		// this.saveTapToString(this.tapped);
 	}
 	inputText: string = ""; 
-	onReturn(i: number)
+	onReturn(i: number, n: string)
 	{
+		let i2 = i * 3 + this.numToSpell[n];
 		let s = this.page.getViewById<TextField>("myAdd");
 		let val = s.text;
 
@@ -289,19 +397,20 @@ export class GpComponent implements OnInit
 		let end = -1;
 		if (valArr[0] !== "")
 		{
-			this.displayArray.splice(i + 1, 0, ...valArr);
-			for (let ind = i; ind < i + valArr.length; ind++)
+			this.displayArray.splice(i2 + 1, 0, ...valArr);
+
+			for (let ind = i2; ind < i2 + valArr.length; ind++)
 			{
 				// this.displayArray.splice(ind + 1, 0, valArr[ind - i]);
 
-				if (valArr[ind - i].indexOf("[c]") > -1) start = ind;
-				if (valArr[ind - i].indexOf("[/c]") > -1) end = ind;
+				if (valArr[ind - i2].indexOf("[c]") > -1) start = ind;
+				if (valArr[ind - i2].indexOf("[/c]") > -1) end = ind;
 
 				// this.tapped.splice(ind + 1, 0, "add");
 			}
 			console.log(start);
 			console.log(end);
-			for (let ind = i; ind < i + valArr.length; ind++)
+			for (let ind = i2; ind < i2 + valArr.length; ind++)
 			{
 				if (ind >= start && ind <= end)
 				{
@@ -313,10 +422,17 @@ export class GpComponent implements OnInit
 				}
 				
 			}
+			let oarr = this.reshapeForCol(this.displayArray, 3, "");
+			let tarr = this.reshapeForCol(this.tapped, 3, "neutral");
+			this.displayArray = oarr[0];
+			this.tapped = tarr[0];
+			this.testArr = oarr[1];
+			this.testTap = tarr[1];
 			
 		}
-
-		console.log(s.text);
+		// console.log(i);
+		// console.log(n);
+		// console.log(s.text);
 		console.log("entered");
 		// console.log(this.tapped);
 		// this.displayArray.splice(i + 1, 0, "test");
@@ -324,12 +440,18 @@ export class GpComponent implements OnInit
 		this.saveArrayToString(this.displayArray);
 		this.saveTapToString(this.tapped);
 		this.selectedWordIndex = -1;
+		this.selectedCol = "";
+	}
+
+	showInputs(i: number, n: string)
+	{
+		return this.selectedWordIndex === i && this.selectedCol === n;
 	}
 
 	insertComment(i: number)
 	{ 
 		let s = this.page.getViewById<TextField>("myAdd");
-		s.text += "[c][/c]"; 
+		s.text += "[c]  [/c] "; 
 
 	}
 

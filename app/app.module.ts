@@ -12,11 +12,15 @@ import { GpComponent } from "./gp/gp.component";
 import { BbComponent } from "./bb/bb.component";
 import { routes, navigatableComponents } from "./app.routing";
 
+import { ModalDialogService } from "nativescript-angular/modal-dialog";
+import { ModalComponent } from "./app.modal";
 
 @NgModule({
   declarations: [AppComponent,
-  	...navigatableComponents
+  	...navigatableComponents,
+  	ModalComponent
   		],
+  entryComponents: [ModalComponent],
   bootstrap: [AppComponent],
   imports: 
   [
@@ -30,5 +34,8 @@ import { routes, navigatableComponents } from "./app.routing";
 
   ],
   schemas: [NO_ERRORS_SCHEMA],
+  providers: [
+  	ModalDialogService
+  ]
 })
 export class AppModule {}

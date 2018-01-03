@@ -1,17 +1,25 @@
 .mainText
 {
-	font-size: 14;
+	font-size: 16;
+	margin: 0 5 0 5;
+	white-space: normal;
 	
 }
 
 
-WrapLayout, GridLayout 
+WrapLayout
 {
-	margin: 0 10 0 10;
+	margin: 5 0 5 20;
 	/*white-space: normal;*/
 }
 
-StackLayout
+GridLayout
 {
-	margin: 0 10 0 10;
+	margin: 5 0 5 10;
+}
+
+StackLayout, AbsoluteLayout
+{
+	margin: 15 10 15 10;
+	/*padding: 0 10 0 10;*/
 }
