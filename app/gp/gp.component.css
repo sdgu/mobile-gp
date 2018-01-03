@@ -5,8 +5,13 @@
 }
 
 
-WrapLayout, GridLayout, StackLayout
+WrapLayout, GridLayout 
 {
 	margin: 0 10 0 10;
 	/*white-space: normal;*/
+}
+
+StackLayout
+{
+	margin: 0 10 0 10;
 }

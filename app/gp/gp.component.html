@@ -28,9 +28,12 @@
 <WrapLayout>
 	<WrapLayout *ngFor="let word of displayArray; let i = index">
 		
-		<Label class="mainText" style.whiteSpace="normal" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)" *ngIf="i <= showLimit"></Label> 
-		<TextField id="myAdd" autocorrect="false" autocapitalizationType="none" col="100" *ngIf="selectedWordIndex === i" [text]="inputText" (returnPress)="onReturn(i)" hint="add here"></TextField>
+	<StackLayout>
+		<Label class="mainText" style.whiteSpace="normal" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)" *ngIf="i <= showLimit"></Label>
+		
+		<TextField id="myAdd" autocorrect="false" autocapitalizationType="none" *ngIf="selectedWordIndex === i" [text]="inputText" (returnPress)="onReturn(i)" hint="add text or comment here"></TextField>
 		<Button text="c" (tap)="insertComment(i)" *ngIf="selectedWordIndex === i"></Button>
+	</StackLayout>
 
 	</WrapLayout>
 </WrapLayout>
@@ -39,7 +42,7 @@
 <ListView [items]="displayArray" class="list-group">
     <ng-template let-word="item" let-i="index" let-odd="odd" let-even="even">
         <GridLayout class="list-group-item">
-            <!-- <Label class="mainText" style.whiteSpace="normal" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)" *ngIf="i <= showLimit"></Label>  -->
+            <Label class="mainText" style.whiteSpace="normal" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)" *ngIf="i <= showLimit"></Label>  
             <StackLayout>
             <Label class="mainText" style.whiteSpace="normal" [text]="word" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)"></Label> 
 			<TextField id="myAdd" autocorrect="false" autocapitalizationType="none" col="100" *ngIf="selectedWordIndex === i" [text]="inputText" (returnPress)="onReturn(i)" hint="add here"></TextField>
@@ -49,17 +52,34 @@
     </ng-template>
 </ListView> 
 
+
 <!-- <GridLayout tkExampleTitle tkToggleNavButton>
-    <RadListView [items]="testArr">
-        <ng-template tkListItemTemplate let-word="item">
-            <StackLayout orientation="vertical">
-                <Label [text]="word.text"></Label>
+    <RadListView [items]="_displayArray">
+        <ng-template tkListItemTemplate let-item="item" let-i="index">
+            <GridLayout class="listItemTemplateGrid">
                 
-            </StackLayout>
+                
+                <GridLayout verticalAlignment="bottom">
+                    <StackLayout class="labelsStackLayout">
+                        <Label [text]="item" [color]="getCol(i)"></Label>
+                        <Label class="mainText" style.whiteSpace="normal" [text]="item.title" [color]="getCol(i)" (tap)="processWord(i)" (longPress)="processSwipe(i)" *ngIf="i <= showLimit"></Label>
+                        <TextField id="myAdd" autocorrect="false" autocapitalizationType="none" *ngIf="selectedWordIndex === i" [text]="inputText" (returnPress)="onReturn(i)" hint="add text or comment here"></TextField>
+                        <Button text="c" (tap)="insertComment(i)" *ngIf="selectedWordIndex === i"></Button>
+
+                        
+                    </StackLayout>
+                </GridLayout>
+            </GridLayout>
         </ng-template>
+
+        <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" ios:itemHeight="200" spanCount="4"></ListViewGridLayout>
     </RadListView>
-</GridLayout>
- -->
+   
+</GridLayout> -->
+
+
+
+
 <!-- <GridLayout class="page" rows="*, *">
   <GridView row="0" [items]="displayArray" colWidth="30%" rowHeight="100" orientation="vertical">
     <ng-template let-word="item" let-i="index">

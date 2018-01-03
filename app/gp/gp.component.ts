@@ -3,7 +3,7 @@ import { Router, NavigationExtras, ActivatedRoute} from "@angular/router";
 import { TextView } from "ui/text-view";
 import { RouterExtensions } from "nativescript-angular/router"
 import { TextField } from "ui/text-field";
-import { Page } from "ui/page";
+import { Page } from "ui/page"; 
 import { Gp } from "./gp";
 // import { RadListView } from "nativescript-pro-ui/listview";
 import {
@@ -40,6 +40,12 @@ export class GpComponent implements OnInit
 	public htmlAddClose = "</font></strong>";
 	public htmlRemoveOpen = "<del><strong><font color='red'>";
 	public htmlRemoveClose = "</font></strong></del>";
+
+
+	public get _displayArray(): Array<string> {
+        return this.displayArray;
+    }
+
 
 	saveArrayToString(arr: Array<string>)
 	{
@@ -125,7 +131,7 @@ export class GpComponent implements OnInit
 					this.tapped = params["tap"].split("$%%");
 					this.displayArray = this.words;//.map(x => " " + x + " ");
 					
-					clear();
+					clear(); 
 					this.saveArrayToString(this.displayArray);
 					this.saveTapToString(this.tapped);
 					// console.log(getString("displayStr0"));
@@ -272,7 +278,7 @@ export class GpComponent implements OnInit
 		// this.saveArrayToString(this.displayArray);
 		// this.saveTapToString(this.tapped);
 	}
-	inputText: string = "";
+	inputText: string = ""; 
 	onReturn(i: number)
 	{
 		let s = this.page.getViewById<TextField>("myAdd");
@@ -283,9 +289,10 @@ export class GpComponent implements OnInit
 		let end = -1;
 		if (valArr[0] !== "")
 		{
+			this.displayArray.splice(i + 1, 0, ...valArr);
 			for (let ind = i; ind < i + valArr.length; ind++)
 			{
-				this.displayArray.splice(ind + 1, 0, valArr[ind - i]);
+				// this.displayArray.splice(ind + 1, 0, valArr[ind - i]);
 
 				if (valArr[ind - i].indexOf("[c]") > -1) start = ind;
 				if (valArr[ind - i].indexOf("[/c]") > -1) end = ind;
